@@ -4,16 +4,14 @@
   "author": "GeoNode Developers",
   "description": "Static code and assets for igb",
   "contributors": [
-    {
-    }
+    {}
   ],
   "scripts": {
     "test": "jshint **.js"
   },
   "license": "BSD",
   "private": "false",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "del": "*",
     "gulp": "^3.9.0",

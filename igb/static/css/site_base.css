@@ -6995,9 +6995,7 @@ article.tab-pane {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 145px;
-  height: 76px;
-  margin: 20px;
+  height: 66px;
 }
 .navbar-collapse {
   max-height: none;
