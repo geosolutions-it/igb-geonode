@@ -87,7 +87,8 @@ LANGUAGES = (
 )
 
 SOCIAL_ORIGINS = [
-    i for i in SOCIAL_ORIGINS if "plus.google.com" not in i["url"]]
+    i for i in SOCIAL_ORIGINS if "plus.google.com" not in i["url"]
+]
 
 if PROJECT_NAME not in INSTALLED_APPS:
     INSTALLED_APPS += (PROJECT_NAME,)
@@ -122,6 +123,47 @@ INSTALLED_APPS += (
     "allauth.socialaccount.providers.linkedin_oauth2",
     "allauth.socialaccount.providers.facebook",
 )
+
+SOCIALACCOUNT_PROVIDERS = {
+    'linkedin_oauth2': {
+        'SCOPE': [
+            'r_basicprofile',
+            'r_emailaddress',
+        ],
+        'PROFILE_FIELDS': [
+            'id',
+            'first-name',
+            'last-name',
+            'email-address',
+            'picture-url',
+            'public-profile-url',
+        ]
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': [
+            'email',
+            'public_profile',
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+        ]
+    },
+}
+
+SOCIALACCOUNT_PROFILE_EXTRACTORS = {
+    "facebook": "geonode.people.profileextractors.FacebookExtractor",
+    "linkedin_oauth2": "geonode.people.profileextractors.LinkedInExtractor",
+}
 
 AUTHENTICATION_BACKENDS += (
     "geonode_ldap.backend.GeonodeLdapBackend",
@@ -170,7 +212,7 @@ GEONODE_LDAP_GROUP_NAME_ATTRIBUTE = env(
 CELERY_TASK_ALWAYS_EAGER = True  # do not use an async queue
 
 # The below code is a workaround for not being able to run tests, apparently
-# due to some migration conflict. If the IGRATION_MODULES environment variable
+# due to some migration conflict. If the MIGRATION_MODULES environment variable
 # is set to none, we set MIGRATION_MODULES to {<app>: None}
 # and that skips checking migrations during DB creation
 # Run tests with:
