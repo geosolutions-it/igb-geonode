@@ -127,14 +127,14 @@ INSTALLED_APPS += (
 SOCIALACCOUNT_PROVIDERS = {
     'linkedin_oauth2': {
         'SCOPE': [
-            'r_basicprofile',
             'r_emailaddress',
+            'r_liteprofile',
         ],
         'PROFILE_FIELDS': [
             'id',
+            'email-address',
             'first-name',
             'last-name',
-            'email-address',
             'picture-url',
             'public-profile-url',
         ]
@@ -158,11 +158,6 @@ SOCIALACCOUNT_PROVIDERS = {
             'gender',
         ]
     },
-}
-
-SOCIALACCOUNT_PROFILE_EXTRACTORS = {
-    "facebook": "geonode.people.profileextractors.FacebookExtractor",
-    "linkedin_oauth2": "geonode.people.profileextractors.LinkedInExtractor",
 }
 
 AUTHENTICATION_BACKENDS += (
