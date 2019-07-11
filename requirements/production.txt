@@ -3,3 +3,4 @@ GeoNode==2.10
 django-sslserver==0.20
 django-environ==0.4.5
 pathlib2==2.3.3
+idna==2.5
