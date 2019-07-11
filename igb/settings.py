@@ -203,8 +203,9 @@ AUTH_LDAP_MIRROR_GROUPS_EXCEPT = [
 
 # these are not needed by django_auth_ldap - we use them to find and match
 # GroupProfiles and GroupCategories
-GEONODE_LDAP_GROUP_NAME_ATTRIBUTE = env(
-    "LDAP_GROUP_NAME_ATTRIBUTE", default="cn")
+GEONODE_LDAP_GROUP_NAME_ATTRIBUTE = env("LDAP_GROUP_NAME_ATTRIBUTE", default="cn")
+GEONODE_LDAP_GROUP_PROFILE_FILTERSTR = env("LDAP_GROUP_SEARCH_FILTERSTR", default='(ou=research group)')
+GEONODE_LDAP_GROUP_PROFILE_MEMBER_ATTR = env("LDAP_GROUP_PROFILE_MEMBER_ATTR", default='member')
 
 CELERY_TASK_ALWAYS_EAGER = True  # do not use an async queue
 
