@@ -104,7 +104,7 @@ class Command(BaseCommand):
                 title=truncated_name,
                 slug=slugify(truncated_name),
                 defaults={
-                    "description": group_name
+                    "description": attributes.get("description", group_name)
                 }
             )
             if created:
