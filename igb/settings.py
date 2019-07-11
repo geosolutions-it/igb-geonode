@@ -74,8 +74,6 @@ CACHES = {
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
-UPLOADER["BACKEND"] = "geonode.importer"
-
 SITENAME = env("DJANGO_SITENAME", default="igb")
 
 WSGI_APPLICATION = "{}.wsgi.application".format(PROJECT_NAME)

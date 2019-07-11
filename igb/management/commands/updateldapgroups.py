@@ -62,16 +62,19 @@ class Command(BaseCommand):
         for cn, attributes in remote_categories:
             self.stdout.write("Processing category CN: {!r}...".format(cn))
             category_name = " ".join(attributes[category_name_attribute])
+            description = " ".join(attributes.get("description", category_name))
             category, created = models.GroupCategory.objects.get_or_create(
                 name=category_name,
                 defaults={
-                    "description": " ".join(attributes.get("description", ""))
+                    "description": description
                 }
             )
             result.append((category, attributes["member"]))
             if created:
                 self.stdout.write(
                     "Created new group category {!r}".format(category_name))
+            category.description = description
+            category.save()
         return result
 
     def update_groups(
@@ -94,6 +97,7 @@ class Command(BaseCommand):
             self.stdout.write("Processing group CN: {!r}...".format(cn))
             group_name = " ".join(attributes[group_name_attribute])
             # group_name = slugify(" ".join(attributes[group_name_attribute]))
+            description = " ".join(attributes.get("description", group_name))
             truncated_name = group_name[:50]
             if truncated_name != group_name:
                 self.stdout.write(
@@ -104,7 +108,7 @@ class Command(BaseCommand):
                 title=truncated_name,
                 slug=slugify(truncated_name),
                 defaults={
-                    "description": attributes.get("description", group_name)
+                    "description": description
                 }
             )
             if created:
@@ -112,10 +116,11 @@ class Command(BaseCommand):
                     "Created new group {!r}, now handling category "
                     "memberships...".format(truncated_name)
                 )
+            group.description = description
             for group_category, members in category_memberships or []:
                 if cn in members:
                     group.categories.add(group_category)
-                    group.save()
+            group.save()
             result.append(group)
         return result
 
