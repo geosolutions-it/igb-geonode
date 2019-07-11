@@ -188,11 +188,13 @@ AUTH_LDAP_USER_SEARCH = ldap_config.LDAPSearch(
 AUTH_LDAP_GROUP_SEARCH = ldap_config.LDAPSearch(
     env("LDAP_GROUP_SEARCH_DN"),
     ldap.SCOPE_SUBTREE,
+    env("LDAP_GROUP_SEARCH_FILTERSTR")
 )
 AUTH_LDAP_GROUP_TYPE = GeonodeNestedGroupOfNamesType()
 AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "cn",
-    "last_name": "sn"
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mailPrimaryAddress"
 }
 AUTH_LDAP_FIND_GROUP_PERMS = True
 AUTH_LDAP_MIRROR_GROUPS_EXCEPT = [
