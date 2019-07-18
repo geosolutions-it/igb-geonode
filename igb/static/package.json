@@ -14,10 +14,12 @@
   "dependencies": {},
   "devDependencies": {
     "del": "*",
+    "grunt": "^1.0.4",
+    "grunt-contrib-jshint": "^2.1.0",
     "gulp": "^3.9.0",
-    "gulp-util": "*",
     "gulp-concat": "*",
     "gulp-less": "*",
+    "gulp-util": "*",
     "path": "*"
   }
 }

@@ -229,3 +229,7 @@ MIGRATION_MODULES = (
     MigrationDisabler() if env("MIGRATION_MODULES", default="").lower() == "none" else
     env("MIGRATION_MODULES", default="") or {}
 )
+
+# Additional settings
+X_FRAME_OPTIONS = 'ALLOW-FROM %s' % SITEURL
+CORS_ORIGIN_ALLOW_ALL = True
