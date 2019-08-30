@@ -1,0 +1,1 @@
+export $(grep -v '^#' /home/geosolutions/igb-geonode/.env | xargs -d '\n'); /home/geosolutions/.virtualenvs/geonode/bin/celery -A geonode.celery_app:app worker -Q default,geonode,cleanup,update,email -B -E -l INFO $@
