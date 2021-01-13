@@ -19,8 +19,7 @@
 #########################################################################
 
 import os
-from urlparse import urljoin
-
+from urllib.parse import urlparse, urlunparse, urlsplit, urljoin
 from django_auth_ldap import config as ldap_config
 import environ
 import ldap

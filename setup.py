@@ -17,29 +17,18 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 #########################################################################
-
 import os
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-    from pip._internal.download import PipSession
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-    from pip.download import PipSession
-from distutils.core import setup
-
+from setuptools import setup
 from setuptools import find_packages
 
-# Parse production.txt to get the list of dependencies
-inst_req = parse_requirements(
-    'requirements/production.txt', session=PipSession())
-REQUIREMENTS = [str(r.req) for r in inst_req]
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+
 setup(
     name="igb",
-    version="2.10.0",
+    version="3.1.x",
     author="",
     author_email="",
     description="igb, based on GeoNode",
@@ -55,5 +44,4 @@ setup(
     packages=['igb',],
     include_package_data=True,
     zip_safe=False,
-    install_requires=REQUIREMENTS,
 )
